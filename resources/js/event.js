@@ -1,3 +1,5 @@
+import { default as axios } from "axios";
+
 document.addEventListener('DOMContentLoaded', function() {
 
     let formulario = document.querySelector("form");
@@ -14,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
         left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,listWeek',
-        locale:'es',
  
     },
 
@@ -30,6 +31,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const datos= new FormData(formulario);
     console.log(datos);
     console.log(formulario.title.value);
+
+    axios.post("http://localhost/diary/public/event/agregar",datos).then(
+      (respuesta) =>{
+        $("#evento").modal("hide");
+    }
+    ).catch(
+      error=>{
+        if(error.response){
+          console.log(error.response.data);
+        }
+      }
+    )
+
   });
 
 });

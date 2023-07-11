@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,10 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+
         request()->validate(Event::$rules);
+        $evento=Event::create($request->all());
+        
     }
 
     /**

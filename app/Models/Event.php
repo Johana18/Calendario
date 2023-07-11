@@ -10,8 +10,8 @@ class Event extends Model
     use HasFactory;
 
     static $rules=[
-        'title'=>'require',
-        'descrption'=>'required',
+        'title'=>'required',
+        'description'=>'required',
         'start'=>'required',
         'end'=>'required',
     ];
