@@ -16,6 +16,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script type="text/javascript">
+        var baseURL={!! json_encode(url('/')) !!}
+    </script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js','resources/js/event.js'])

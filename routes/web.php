@@ -15,12 +15,18 @@ use App\Http\Controllers\EventController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('event.index');
+})->middleware("auth");
 
 Auth::routes();
  
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => ['auth']], function(){
 
 Route::get('/event', [App\Http\Controllers\EventController::class, 'index']);
+Route::post('/event/mostrar', [App\Http\Controllers\EventController::class, 'show']);
 Route::post('/event/agregar', [App\Http\Controllers\EventController::class, 'store']);
+Route::post('/event/editar/{id}', [App\Http\Controllers\EventController::class, 'edit']);
+Route::post('/event/actualizar/{event}', [App\Http\Controllers\EventController::class, 'update']);
+Route::post('/event/borrar/{id}', [App\Http\Controllers\EventController::class, 'destroy']);
+});

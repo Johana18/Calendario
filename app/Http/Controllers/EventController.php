@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Validator;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -40,15 +41,21 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $evento=Event::all();
+        return response()->json($evento);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
         //
+        $evento=Event::find($id);
+        $evento->start=Carbon::createFromFormat('Y-m-d H:i:s', $evento->start)->format('Y-m-d');
+        $evento->end=Carbon::createFromFormat('Y-m-d H:i:s', $evento->end)->format('Y-m-d');
+        return response()->json($evento);
+        
     }
 
     /**
@@ -57,13 +64,20 @@ class EventController extends Controller
     public function update(Request $request, Event $event)
     {
         //
+        request()->validate(Event::$rules);
+        $event->update($request->all());
+        return response()->json($event);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
         //
+        $evento=Event::find($id)->delete();
+
+        return response()->json($evento);
+
     }
 }
