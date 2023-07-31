@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Agenda'),
 
     /*
     |--------------------------------------------------------------------------
@@ -68,10 +68,11 @@ return [
     | will be used by the PHP date and date-time functions. We have gone
     | ahead and set this to a sensible default for you out of the box.
     |
-    */
+    
 
     'timezone' => 'UTC',
-
+    */
+    'timezone' => 'America/Guatemala',
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -81,10 +82,10 @@ return [
     | by the translation service provider. You are free to set this value
     | to any of the locales which will be supported by the application.
     |
-    */
 
     'locale' => 'en',
-
+    */
+    'locale' => 'es_MX',
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -94,10 +95,10 @@ return [
     | is not available. You may change the value to correspond to any of
     | the language folders that are provided through your application.
     |
+    'fallback_locale' => 'en',
     */
 
-    'fallback_locale' => 'en',
-
+    'fallback_locale' => 'es_MX',
     /*
     |--------------------------------------------------------------------------
     | Faker Locale
@@ -107,10 +108,11 @@ return [
     | data for your database seeds. For example, this will be used to get
     | localized telephone numbers, street address information and more.
     |
-    */
 
     'faker_locale' => 'en_US',
+    */
 
+    'faker_locale' => 'es_MX',
     /*
     |--------------------------------------------------------------------------
     | Encryption Key

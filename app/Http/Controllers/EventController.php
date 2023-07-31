@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Validator;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -52,8 +53,8 @@ class EventController extends Controller
     {
         //
         $evento=Event::find($id);
-        $evento->start=Carbon::createFromFormat('Y-m-d H:i:s', $evento->start)->format('Y-m-d');
-        $evento->end=Carbon::createFromFormat('Y-m-d H:i:s', $evento->end)->format('Y-m-d');
+        $evento->start=Carbon::createFromFormat('Y-m-d H:i:s', $evento->start)->format('Y-m-d H:i:s');
+        $evento->end=Carbon::createFromFormat('Y-m-d H:i:s', $evento->end)->format('Y-m-d H:i:s');
         return response()->json($evento);
         
     }
@@ -79,5 +80,14 @@ class EventController extends Controller
 
         return response()->json($evento);
 
+    }
+
+    public function imprimir()
+    {
+        //$eventos = Event::all();
+        $date = Carbon::now()->locale('es');
+        $eventos = Event::whereMonth('end', '=', Carbon::now())->orderBy('id','ASC')->paginate(500);
+        $pdf = Pdf::loadView('event.pdf', compact('eventos','date'));
+        return $pdf->stream();
     }
 }

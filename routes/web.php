@@ -29,4 +29,7 @@ Route::post('/event/agregar', [App\Http\Controllers\EventController::class, 'sto
 Route::post('/event/editar/{id}', [App\Http\Controllers\EventController::class, 'edit']);
 Route::post('/event/actualizar/{event}', [App\Http\Controllers\EventController::class, 'update']);
 Route::post('/event/borrar/{id}', [App\Http\Controllers\EventController::class, 'destroy']);
+
+Route::get('/event/imprimir', [App\Http\Controllers\EventController::class, 'imprimir']);
+
 });
